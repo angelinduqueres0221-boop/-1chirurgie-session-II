@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sémiologie chirurgicale — Cours 1 à 5 (Dr Lubin Evens)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#1B4FA0; --bleu-fonce:#0E2F66; --bleu-pale:#E9F0FB;
+  --rouge:#C8283C; --rouge-pale:#FDEBEE;
+  --jaune:#F2B705; --jaune-pale:#FFF6D1; --jaune-fonce:#8A6500;
+  --blanc:#FFFFFF; --fond:#F5F8FD; --encre:#14213D; --gris:#5B6478; --gris-pale:#EEF1F6;
+  --titre:'Fraunces',Georgia,'Times New Roman',serif;
+  --corps:'Source Sans 3',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--corps);font-size:18px;line-height:1.65}
+#progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--bleu),var(--rouge),var(--jaune));z-index:100}
+header.hero{background:var(--bleu-fonce);color:#fff;padding:56px 20px 40px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.hero h1{font-family:var(--titre);font-weight:800;font-size:clamp(2rem,6vw,3.6rem);line-height:1.08;margin:0 0 12px}
+.hero p{max-width:700px;margin:6px 0;color:#D5E1F7}
+.hero .tri{display:flex;height:8px;max-width:340px;margin:22px 0 0;border-radius:4px;overflow:hidden}
+.hero .tri span{flex:1}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:34px;max-width:1120px;margin:0 auto;padding:24px 18px 80px}
+nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;background:var(--blanc);border:1px solid #D9E2F2;border-radius:10px;padding:14px}
+nav.toc b{font-family:var(--titre);display:block;margin-bottom:6px;color:var(--bleu-fonce)}
+nav.toc a{display:block;padding:5px 8px;border-left:3px solid transparent;color:var(--encre);text-decoration:none;font-size:15px;line-height:1.3}
+nav.toc a.sub{padding-left:20px;font-size:14px;color:var(--gris)}
+nav.toc a.on{border-left-color:var(--rouge);background:var(--bleu-pale);font-weight:600}
+main{min-width:0}
+section.cours{margin-bottom:60px}
+h2{font-family:var(--titre);font-weight:800;font-size:clamp(1.6rem,4vw,2.3rem);color:var(--bleu-fonce);margin:0 0 4px;line-height:1.15}
+h2 small{display:block;font-family:var(--corps);font-weight:600;font-size:.9rem;color:var(--gris);margin-bottom:4px}
+h3{font-family:var(--titre);font-weight:600;font-size:1.3rem;color:var(--bleu);margin:34px 0 10px;border-bottom:2px solid var(--bleu-pale);padding-bottom:4px}
+h4{margin:18px 0 6px;font-size:1.05rem;color:var(--encre)}
+p{margin:.55em 0}
+ul,ol{padding-left:1.3em;margin:.4em 0}
+li{margin:.25em 0}
+.obj{background:var(--blanc);border:1px solid #D9E2F2;border-radius:10px;padding:14px 18px;margin:16px 0}
+.obj b{color:var(--bleu-fonce)}
+/* cartes de statut */
+.card{position:relative;border-radius:10px;padding:34px 18px 14px;margin:14px 0;background:var(--blanc)}
+.card::before{position:absolute;top:8px;left:14px;font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.02em}
+.note{border:1px solid #C9D8F2;border-left:6px solid var(--bleu)}
+.note::before{content:"Notes du cours";background:var(--bleu);color:#fff}
+.ref{border:2px dashed var(--jaune);background:var(--jaune-pale)}
+.ref::before{content:"Ajout de référence";background:var(--jaune);color:#3a2b00}
+.inc{border:2px dotted var(--gris);background:var(--gris-pale)}
+.inc::before{content:"Lecture incertaine";background:var(--gris);color:#fff}
+.ecart{border:2px solid var(--rouge);background:var(--rouge-pale)}
+.ecart::before{content:"Écart à vérifier avec ton enseignant";background:var(--rouge);color:#fff}
+.retenir{border:2px solid var(--jaune);background:var(--jaune-pale);border-radius:10px}
+.retenir::before{content:"À retenir";background:var(--jaune);color:#3a2b00}
+.piege{border:2px solid var(--rouge);background:var(--rouge-pale)}
+.piege::before{content:"Piège / gravité";background:var(--rouge);color:#fff}
+.def{border:1px solid #C9D8F2;border-left:6px solid var(--bleu);background:var(--bleu-pale)}
+.def::before{content:"Définition";background:var(--bleu);color:#fff}
+.q{font-weight:700;color:var(--rouge)}
+.cr{color:var(--gris);font-style:italic}
+details{background:var(--blanc);border:1px solid #D9E2F2;border-radius:10px;margin:12px 0;overflow:hidden}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--bleu-fonce);list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--rouge);transition:transform .25s}
+details[open]>summary::after{transform:rotate(45deg)}
+details>.body{padding:0 12px 10px}
+summary:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+table{border-collapse:collapse;width:100%;background:var(--blanc);font-size:16px;margin:12px 0}
+th,td{border:1px solid #D0DBEE;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--bleu);color:#fff}
+.scroll{overflow-x:auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chip{display:inline-block;background:var(--bleu);color:#fff;border-radius:20px;padding:4px 12px;font-size:14px;font-weight:600;text-decoration:none;margin:3px 4px 3px 0}
+.chip.r{background:var(--rouge)}
+.legende{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:14px 0}
+.legende .card{margin:0;padding-top:34px;font-size:15px}
+figure{margin:18px 0;background:var(--blanc);border:1px solid #D9E2F2;border-radius:10px;padding:12px;text-align:center}
+figcaption{font-size:14px;color:var(--gris);margin-top:6px}
+svg{max-width:100%;height:auto}
+.reg rect{fill:var(--bleu-pale);stroke:var(--bleu);stroke-width:2;transition:fill .2s}
+.reg g:hover rect,.reg g:focus rect{fill:var(--jaune-pale)}
+.reg text{font:600 12px var(--corps);fill:var(--bleu-fonce);text-anchor:middle;pointer-events:none}
+.pulse{fill:var(--rouge);animation:pulse 1.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.55}}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.flow span.st{background:var(--bleu-pale);border:1px solid var(--bleu);border-radius:8px;padding:6px 10px;font-weight:600;font-size:15px}
+.flow span.ar{color:var(--rouge);font-weight:800}
+.rev{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.rev.vu{opacity:1;transform:none}
+footer{background:var(--bleu-fonce);color:#D5E1F7;padding:26px 20px;text-align:center;font-size:15px}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;padding-top:12px}
+  nav.toc{position:static;max-height:none}
+  nav.toc .links{display:none}
+  nav.toc.ouvert .links{display:block}
+  nav.toc button{display:block;width:100%}
+  .grid2{grid-template-columns:1fr}
+  body{font-size:17px}
+}
+@media (min-width:861px){nav.toc button{display:none}}
+nav.toc button{background:var(--bleu);color:#fff;border:0;border-radius:8px;padding:9px;font:600 15px var(--corps);cursor:pointer}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rev{opacity:1;transform:none;transition:none}
+  .pulse{animation:none}
+  summary::after{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Sémiologie chirurgicale<br>Cours 1 à 5</h1>
+    <p>Cours du Dr Lubin Evens, repris intégralement de tes deux cahiers manuscrits (partie 1 et partie 2), fusionnés sans doublon : fondements, anamnèse, douleur, abdomen aigu chirurgical, syndrome péritonéal, péritonites, appendicite aiguë.</p>
+    <p>Dernier point couvert : l'examen physique de l'appendicite (toucher rectal, cri du Douglas).</p>
+    <div class="tri"><span style="background:var(--bleu)"></span><span style="background:#fff"></span><span style="background:var(--rouge)"></span><span style="background:var(--jaune)"></span></div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Sommaire du cours">
+  <button type="button" id="tocBtn" aria-expanded="false">Sommaire</button>
+  <div class="links">
+  <b>Sommaire</b>
+  <a href="#intro">Lire ce document</a>
+  <a href="#c1">Cours 1 — Fondements et anamnèse</a>
+  <a class="sub" href="#c1-signes">Signe, symptôme</a>
+  <a class="sub" href="#c1-motif">Motif de consultation</a>
+  <a class="sub" href="#c1-ident">Fiche d'identification</a>
+  <a class="sub" href="#c1-anam">Anamnèse et HMA</a>
+  <a class="sub" href="#c1-ant">Antécédents, allergies, toxiques</a>
+  <a href="#c2">Cours 2 — La douleur</a>
+  <a class="sub" href="#c2-carac">Caractéristiques</a>
+  <a class="sub" href="#c2-anat">Anatomie de surface</a>
+  <a href="#c3">Cours 3 — Abdomen aigu chirurgical</a>
+  <a href="#c4">Cours 4 — Syndrome péritonéal</a>
+  <a class="sub" href="#c4-synd">Syndrome et signes</a>
+  <a class="sub" href="#c4-3s">Troisième secteur</a>
+  <a class="sub" href="#c4-contr">Contracture et rebond</a>
+  <a class="sub" href="#c4-perit">Péritonites</a>
+  <a href="#c5">Cours 5 — Appendicite aiguë</a>
+  <a class="sub" href="#c5-douleur">Douleur appendiculaire</a>
+  <a class="sub" href="#c5-anat">Anatomie et physiopathologie</a>
+  <a class="sub" href="#c5-inter">Interrogatoire</a>
+  <a class="sub" href="#c5-exam">Examen physique</a>
+  <a href="#synthese">Synthèse</a>
+  <a href="#incertains">Points à trancher</a>
+  <a href="#glossaire">Glossaire</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="cours" id="intro">
+  <h2><small>Mode d'emploi</small>Lire ce document</h2>
+  <p>Chaque contenu porte un statut visible. Rien n'est corrigé en silence.</p>
+  <div class="legende">
+    <div class="card note">Tout ce qui vient de tes cahiers.</div>
+    <div class="card ref">Ce qui est ajouté pour approfondir, avec sa référence ou la mention [À VÉRIFIER].</div>
+    <div class="card inc">Passage manuscrit que je ne lis pas avec certitude, avec ce que je crois lire.</div>
+    <div class="card ecart">Une note qui diffère d'une référence établie : la note d'abord, l'écart ensuite.</div>
+  </div>
+  <div class="card note">
+    <p><b>Fusion des deux PDF.</b> La partie 2 reprend les cours 2, 3 (début) puis prolonge jusqu'au cours 5 ; la partie 1 contient la couverture, le cours 1, le cours 2 et le début du cours 3. Les pages communes ont été fusionnées une seule fois. Les notes mêlent français et créole haïtien : tout est ici en français médical, avec un terme créole entre parenthèses seulement quand il lève une ambiguïté.</p>
+  </div>
+  <div class="flow" aria-label="Carte d'ensemble">
+    <a class="chip" href="#c1">Cours 1 Fondements</a><span class="ar">→</span>
+    <a class="chip" href="#c2">Cours 2 Douleur</a><span class="ar">→</span>
+    <a class="chip" href="#c3">Cours 3 Abdomen aigu</a><span class="ar">→</span>
+    <a class="chip r" href="#c4">Cours 4 Péritonite</a><span class="ar">→</span>
+    <a class="chip r" href="#c5">Cours 5 Appendicite</a>
+  </div>
+</section>
+
+<!-- ======================= COURS 1 ======================= -->
+<section class="cours rev" id="c1">
+  <h2><small>Cours 1 · mardi 14 octobre 2025 · Dr Lubin Evens, chirurgien</small>Fondements et anamnèse</h2>
+  <div class="obj"><b>Objectifs d'apprentissage</b>
+    <ul>
+      <li>Définir la sémiologie, le signe, le symptôme, et les distinguer sans hésiter.</li>
+      <li>Expliquer ce qu'est un motif de consultation et comment démarrer l'entretien.</li>
+      <li>Remplir la fiche d'identification et justifier l'intérêt de chaque rubrique.</li>
+      <li>Rédiger l'histoire de la maladie actuelle, puis enchaîner antécédents, allergies et habitudes toxiques.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-signes">1. Sémiologie, signe, symptôme</h3>
+  <div class="card note">
+    <p>Sémiologie chirurgicale : certaines pathologies chirurgicales ont certains signes et symptômes qui leur sont propres.</p>
+    <p class="q">Qu'est-ce que la sémiologie ?</p>
+    <p>Elle étudie les signes et les symptômes qui permettent de poser un diagnostic.</p>
+  </div>
+  <div class="card note">
+    <p class="q">C'est quoi un signe, un symptôme ?</p>
+    <p><b>Les symptômes</b> sont des manifestations subjectives propres aux patients : le patient dit ce qu'il ressent, sa perception. Le médecin ne peut ni les voir, ni les ressentir, ni les palper.</p>
+    <p><b>Les signes</b> sont objectifs : c'est le médecin qui les découvre, qui va les chercher.</p>
+    <div class="grid2">
+      <div><b>Symptômes</b> = les ressentis du patient</div>
+      <div><b>Signes</b> = l'observation du médecin</div>
+    </div>
+  </div>
+  <div class="card note">
+    <p class="q">Quand il y a un signe, le patient ne le voit pas, ne le ressent pas ?</p>
+    <p>Le patient ou la patiente peut ne pas savoir, mais le médecin peut s'orienter à partir des données qu'il connaît et de la maîtrise de ce qu'il fait.</p>
+    <p>Le patient décrit ses symptômes mais pas ses signes. <span class="q">Pourquoi pas ?</span> Par exemple, le patient dit qu'il a mal, qu'il se sent chaud, qu'il a la nausée : ce sont des symptômes. Le médecin, lui, s'oriente à partir de ce qu'il voit, de ce qu'il entend, des questions de l'interrogatoire ; les signes viennent des observations objectives du médecin.</p>
+  </div>
+  <div class="card inc">
+    <p>Le passage « le médecin peut s'orienter à partir des données sa lò konnen, de maîtrise lò genyen de sa lò fè a » est écrit en mélange français/créole. Je lis : « à partir des données qu'il connaît, de la maîtrise qu'il a de ce qu'il fait ».</p>
+  </div>
+
+  <h4>Le cas de la masse ou de la boule</h4>
+  <div class="card note">
+    <p class="q">Le patient ne peut-il pas dire « Dr, j'ai une masse ou une boule au niveau de la cuisse » ? Oui ou non ?</p>
+    <p>Oui, il peut le faire. C'est donc le patient qui décrit ce qu'il a vu et ressenti.</p>
+    <p class="q">La masse ou la boule que le patient ressent, est-ce un signe ou un symptôme ?</p>
+    <p>Il ne ressent pas la masse : il peut la toucher. Ce qu'il ressent, c'est la douleur qu'elle donne, et c'est différent : la douleur, il ne peut pas la voir.</p>
+  </div>
+  <div class="card inc">
+    <p>Deux échanges de questions-réponses (le premier daté dans la marge « 15:08:56 ») sont en créole dense. Je lis : (1) <i>« Vous ressentez la douleur mais ne la voyez pas et ne pouvez pas la décrire ? »</i> → « ce n'est pas que le patient ne peut pas décrire un signe, mais de manière générale les symptômes sont directement liés aux patients ; le patient peut toujours venir dire qu'il a une masse, mais ce sont les symptômes qu'il ressent, par exemple la douleur » ; (2) <i>« Le signe n'est pas ressenti par le médecin ? »</i> → « le patient, comme motif de consultation, vient le plus souvent pour ses symptômes, pas seulement pour eux ». La page suivante conclut : « Pour conclure, je pense que oui, il peut venir pour ça. » Le début de la phrase précédente (« un patient peut venir comme motif… pour un signe… ») est coupé.</p>
+  </div>
+  <div class="card note">
+    <p>Ce qui se passe avec les symptômes : on ne peut pas les voir, les ressentir, ni les palper ; c'est le patient qui doit dire à quel niveau ça lui fait mal, quel type de gêne ça lui donne. Même pour une masse, on ne ressent pas la gêne ni la compression qu'elle peut causer : c'est le patient qui la ressent. Pour une masse, qui est un signe, il y a un symptôme qui l'accompagne et que le patient ressent.</p>
+    <p>Exemple : un patient qui a une hernie peut la décrire quasi complètement : « Dr, j'ai fait un effort et j'ai une boule qui apparaît… ».</p>
+    <p class="q">Que décrit-il ?</p>
+    <ul>
+      <li><b>Siège</b> : « la masse est localisée à tel endroit ».</li>
+      <li><b>Mode de survenue</b> : après un effort (caractéristique sémiologique de la masse).</li>
+      <li><b>Consistance</b> : ferme (dure).</li>
+      <li><b>Réductibilité</b> : couché, la masse n'est plus visible ; elle réapparaît quand il va aux toilettes ou fait un effort.</li>
+      <li><b>Impulsion</b> à la toux ou aux efforts.</li>
+      <li><b>Sensibilité</b> : « ça ne me fait presque pas mal ».</li>
+    </ul>
+    <p>C'est le patient qui décrit tout cela. Voilà la différence entre un signe et un symptôme.</p>
+  </div>
+  <div class="card inc">
+    <p>Dans la liste ci-dessus, la réductibilité et la phrase « lè m al nan twalèt, lè m al fè kwo chaf li fòti » sont de lecture difficile ; je lis : « couché, la masse ne se voit plus ; quand je vais aux toilettes ou que je force, elle ressort ».</p>
+  </div>
+  <div class="card note">
+    <p>Il est vrai que le symptôme est subjectif et le signe objectif. Souvent, c'est le médecin qui découvre le signe, mais pas tout le temps : le patient peut venir et décrire quasi toute la progression avec ses caractéristiques.</p>
+    <p><b>Exemples en chirurgie :</b> un lipome. Ce sont les patients qui viennent avec leurs signes : une boule sur le corps, une boule à la tête, un testicule qui grossit. Ces signes sont ce qui motive leur consultation en chirurgie. Le patient vient donc avec un signe comme motif de consultation, d'où l'importance de la distinction.</p>
+    <p><b>Exemples en médecine interne et en pédiatrie :</b> l'ictère (yeux jaunes) ; en pédiatrie, on voit le bébé devenir foncé (cyanose). Ce n'est pas toujours le médecin qui découvre le signe.</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Symptôme = subjectif, ressenti et décrit par le patient. Signe = objectif, observé par le médecin.</li>
+      <li>Un signe peut être le motif de consultation (lipome, ictère, cyanose, masse).</li>
+      <li>Le patient ne ressent pas une masse : il peut la toucher, il ressent la gêne ou la douleur qu'elle donne.</li>
+      <li>Important : savoir faire la différence entre signe et symptôme.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-motif">2. Motif de consultation et début de l'entretien</h3>
+  <div class="card note">
+    <p>Quand un patient vient chez le médecin, quelque chose le pousse à venir. Dans notre jargon, on l'appelle le <b>motif de consultation</b>. Pour le patient, il y a forcément quelque chose qui va motiver son déplacement, sa visite. Les motifs peuvent être divers.</p>
+    <p>Quand le patient vient avec son motif, le médecin doit lui parler, l'interroger pour trouver les causes de sa gêne (malaise).</p>
+    <p>Le médecin ne s'arrête pas là : si je veux commencer une conversation avec quelqu'un, je dois me présenter, m'identifier.</p>
+    <p>Exemples de motifs donnés : une douleur, des vomissements, des épisodes de vomissements, de la diarrhée, une céphalée, des palpitations, un vertige, de l'asthénie, une difficulté à respirer, etc.</p>
+    <p>Une fois le patient présent, le médecin se présente : « Bonsoir, je suis le Dr X, en quoi puis-je vous aider ? Pourquoi êtes-vous venu me voir ? » Après cette mini-présentation, l'étape suivante est <b>l'interrogatoire (l'anamnèse)</b>, qui commence par l'histoire de la maladie actuelle.</p>
+  </div>
+
+  <h3 id="c1-ident">3. La fiche d'identification</h3>
+  <div class="card note">
+    <p>Si on est pressé de connaître le nom du patient, son âge, on doit les avoir dans la fiche d'identification. <span class="q">Que doit-on y avoir ?</span></p>
+    <p>L'adresse, le téléphone, le statut social, la religion, l'âge, le nom, le prénom, le sexe, la profession ou occupation.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>Rubrique</th><th>Pourquoi elle compte (d'après les notes)</th></tr>
+    <tr><td><b>Nom</b></td><td>Permet une bonne relation médecin-patient, très importante pour la prise en charge : avec un mauvais rapport, le traitement est déjà en péril. Appeler « M. Jean, M. Jacques, Mme Anna » plutôt que « patient » établit la relation et efface la distance qui existe en général entre médecin et patient : le patient se sent proche, plus en confiance. Le nom peut aussi indiquer l'origine ; certaines maladies sont liées à l'origine, mais ce ne sera pas vrai pour tous les cas (en Haïti, des gens portent des noms de footballeurs ou des noms d'origines très diverses ; un nom arabe ou asiatique peut orienter vers une origine, certaines maladies étant plus fréquentes chez certains groupes). Le nom peut aussi refléter l'origine sociale, même si ce n'est pas toujours vrai.</td></tr>
+    <tr><td><b>Âge</b></td><td>Facteur de risque. Des pathologies sont liées à l'âge : pédiatriques, gériatriques. Un même trouble est souvent bénin chez un jeune, alors que chez une personne de 65 ans il faut penser à un cancer ou à une autre cause. Les traitements diffèrent selon l'âge, notamment le dosage des médicaments : les doses pédiatriques ne sont pas celles des adultes. Très important.</td></tr>
+    <tr><td><b>Sexe</b></td><td>Certaines maladies existent chez un sexe et pas chez l'autre : cancer de la prostate, grossesse, salpingite, etc. On cherche à connaître le <b>sexe biologique</b>, même si la personne se déclare d'un autre sexe social. Il faut tenir compte du sexe biologique du patient.</td></tr>
+    <tr><td><b>Religion</b></td><td>Certaines pratiques liées à la religion ou à une vision du monde peuvent entraîner des pathologies spécifiques. Certaines religions, comme les Témoins de Jéhovah, n'acceptent pas la transfusion sanguine. La transfusion n'est pas une maladie : c'est une question qu'on va devoir poser. Il faut connaître la religion du patient avant de la faire, et connaître la raison de la transfusion.</td></tr>
+    <tr><td><b>Profession / occupation</b></td><td>Les patients ne sont pas traités de la même manière : selon le travail, on peut avoir certaines maladies. Exemple : des marchands de marché qui inhalent des fumées ne font pas les mêmes maladies que des employés de banque. Cela peut aider la prescription : selon son occupation, la personne a ou n'a pas les moyens d'acheter le médicament.</td></tr>
+    <tr><td><b>Adresse</b></td><td>Une personne qui vit dans une zone insalubre est plus fragile face aux maladies qu'une personne qui vit dans un endroit plus ou moins propre. L'origine et le lieu de vie renseignent sur les conditions sociales et économiques, donc sur les maladies possibles.</td></tr>
+    <tr><td><b>Statut (état civil)</b></td><td>Ce n'est pas le statut social : c'est l'état civil, appelé statut matrimonial. Il renseigne sur la vie de couple : par exemple, une personne mariée peut faire un cancer du col, une grande multipare… ; un célibataire sans rapport sexuel actif n'a pas les mêmes risques. Un célibataire peut aussi avoir des relations avec plusieurs personnes : c'est ainsi qu'on les définit.</td></tr>
+    <tr><td><b>Personne responsable / contact</b></td><td>La personne responsable, le contact : qui on doit contacter.</td></tr>
+  </table></div>
+  <div class="card inc">
+    <p>Lectures à confirmer dans ce tableau : la liste des maladies liées au sexe contenait deux autres termes que je lis « gynécomastie » et « endométriose » (de façon peu sûre, je ne les ai pas retenus) ; l'exemple de l'âge (« 65 ans … toilette … cancer ») ; l'exemple du sexe biologique (patient ayant toutes les caractéristiques d'un sexe mais ovaires/utérus de l'autre, traitement hormonal masculin) ; la phrase sur la « grande multipare » ; l'exemple du nom « Sedenye » pour l'origine sociale.</p>
+  </div>
+
+  <details open>
+    <summary>Médecin et pouvoir d'achat : prescrire en pensant à la poche du patient</summary>
+    <div class="body">
+      <div class="card note">
+        <p>« Le médecin doit toujours être dans les poches des patients. » On ne peut pas prescrire un médicament à un patient qui n'a même pas de quoi acheter à manger ou une bouteille d'eau pour le prendre : le médicament n'aura pas l'effet désiré.</p>
+        <p>Si le patient a un problème économique et qu'on lui prescrit un médicament qui se vend 2 000 $ ou 3 000 $ (chiffres des notes), on peut lui donner le générique, c'est-à-dire ne pas marquer le nom commercial. Exemple : prescrire du paracétamol (en écrivant ce nom) ; si on écrit le nom commercial, la pharmacie vend ce produit de marque, qui coûte cher. Avec la même somme, le patient aurait pu acheter un générique qui coûterait 10 fois moins cher (chiffre des notes). Très important.</p>
+        <p>Pour une même maladie, plusieurs laboratoires fabriquent le médicament. Exemple : l'amoxicilline. Une amoxicilline fabriquée en Allemagne coûte plus cher qu'une fabriquée ailleurs (Inde), et peut faire le même travail. Ce n'est pas une contrefaçon ; la contrefaçon, c'est autre chose.</p>
+        <p>Mesure de la poche du patient : un médicament cher qui fait le travail à plus de 98 % (chiffre des notes). Peut-on donner un traitement moins coûteux sans donner le succès thérapeutique voulu ? Réponse : généralement, cela n'existe pas, c'est dans notre tête. Il ne faut pas tomber dans ce piège, c'est très grave.</p>
+        <p class="q">Y a-t-il des médicaments plus efficaces que d'autres ?</p>
+        <p>Oui. Exemple du gâteau de la marque Marie-Bélard : elle offre plus de garantie, mais d'autres endroits font des gâteaux aussi bons. On ne va pas faire dépenser 20 gourdes à quelqu'un pour ce qu'on peut traiter avec 5 gourdes.</p>
+      </div>
+      <div class="card inc">
+        <p>Passages en créole dense : le sigle « HC » (« produit HC ») que je n'ai pas su interpréter ; la fin de l'exemple du gâteau (les montants 5 et 20 gourdes sont repris tels que je les lis).</p>
+      </div>
+    </div>
+  </details>
+  <div class="card note">
+    <p>Le cahier précise : « On n'est pas dans la sémiologie, on est dans la réception, la tenue du dossier médical. On ne peut pas parler de sémiologie sans parler du dossier médical : presque tout ce que l'on trouve chez le patient, il faut le transmettre dans un dossier. »</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Fiche d'identification : adresse, téléphone, statut social, religion, âge, nom, prénom, sexe, profession.</li>
+      <li>Appeler le patient par son nom crée la confiance, base de la prise en charge.</li>
+      <li>L'âge est un facteur de risque et conditionne le dosage ; on cherche le sexe biologique.</li>
+      <li>Connaître la religion avant toute transfusion (Témoins de Jéhovah).</li>
+      <li>Statut = état civil (matrimonial), pas statut social.</li>
+      <li>Prescrire en tenant compte des moyens du patient : le générique existe.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-anam">4. L'anamnèse et l'histoire de la maladie actuelle (HMA)</h3>
+  <div class="card note">
+    <p>L'interrogatoire, c'est l'<b>anamnèse</b> : histoire de la maladie actuelle. Très important : il y a une différence entre « histoire de la maladie » et « histoire de la maladie actuelle » ; cela s'appelle <b>l'évolution</b>. On ne doit pas dire « histoire de la maladie » tout court. Si on dit cela, de quelle maladie parle-t-on : celle que la personne a eue à 5 ans, à 19 ans, le mois dernier ? La maladie actuelle, c'est celle qui motive sa consultation : c'est l'histoire de la maladie actuelle.</p>
+    <p class="q">Comment ça commence ?</p>
+    <p>De façon chronologique : quand la maladie a commencé, ce que le patient ressent, quels sont les symptômes, comment ça a commencé, ce qu'il a pris, si c'était supportable ou fort, ce qu'il a pris pour le calmer, comment évolue la maladie depuis qu'elle a commencé, s'il a déjà vu un médecin. Donc c'est comme cela que commence ce qu'on appelle l'histoire de la maladie actuelle, ou anamnèse, ou interrogatoire.</p>
+  </div>
+  <div class="flow"><span class="st">Début</span><span class="ar">→</span><span class="st">Symptômes</span><span class="ar">→</span><span class="st">Ce qu'il a pris</span><span class="ar">→</span><span class="st">Évolution</span><span class="ar">→</span><span class="st">Consultation</span></div>
+
+  <h4>Comment la rédiger : les exemples du cours</h4>
+  <div class="card note">
+    <p><b>Formule d'ouverture.</b> « Patient(e) de 32 ans » : le français permet d'écrire ainsi. Il faut préciser le sexe.</p>
+    <p><b>Identité pathologique.</b> Les patients ont une identité pathologique : un patient chronique a un statut pathologique. Un hypertendu est hypertendu ; il est ainsi parce que c'est une maladie chronique, qu'il aura pour toute la vie. Son identité est « hypertendu ». On dit aussi hypertendu, asthmatique, diabétique : c'est une identité, une étiquette. Un patient qui n'a pas de pathologie chronique ne reçoit pas ce type d'étiquette. D'autres exemples cités : épileptique, drépanocytaire (lecture : « cyclémique »).</p>
+    <p>Quand on rédige : « patient de 30 ans, diabétique chronique » ou « hypertendu chronique ».</p>
+    <p><b>Patient chronique sous médicament.</b> Il faut dire quel médicament il prend (ex. hypertendu chronique avec traitement régulier), s'il le prend comme il faut ou de façon irrégulière. Médicaments cités : amlodipine, aténolol, nifédipine, énalapril, captopril. Il faut écrire le médicament et la quantité par jour : par exemple 1 comprimé, 2 fois par jour. Ensuite on écrit « vu ce soir pour douleur ». Si le patient a une douleur, il faut donner toutes les caractéristiques sémiologiques de la douleur : quelle douleur, quel siège.</p>
+    <p><b>Exemple 1.</b> Douleur épigastrique : donner son intensité ; autre caractéristique : douleur intense à l'épigastre, ou douleur épigastrique modérée devenue intense par la suite.</p>
+    <p><b>Exemple 2.</b> « Patient(e) de 80 ans, vu pour douleur épigastrique, à début léger, qui s'est ensuite intensifiée au fil des heures jusqu'à devenir insupportable. » Quand on dit « intense », cela veut dire qu'avec le temps la douleur augmente : elle commence légèrement puis s'intensifie. On peut dire aussi « d'intensité croissante ».</p>
+    <p><b>Exemple 3.</b> « Douleur épigastrique intense ayant commencé hier soir (ou ce soir, cet après-midi) de façon modérée, puis s'étant intensifiée au fil des heures jusqu'à devenir insupportable, accompagnée de 2 épisodes de vomissement. » Les vomissements sont ici une caractéristique accompagnatrice. Maintenant, en tombant sur le vomissement, c'est un <b>signe</b> qui sort du symptôme qui est la douleur : en parlant de la douleur, on tombe sur un signe qui l'accompagne. Ce signe a une caractéristique sémiologique chirurgicale : il faut le détailler.</p>
+    <p><b>Détailler le vomissement.</b> Ce n'est pas un vomissement « tout simplement » : bilieux ? Il faut donner son contenu et sa caractéristique : quantité (abondant), nombre, volume, milieu, aspect, moment (heure). La douleur ne s'est pas améliorée avec la prise d'analgésique habituel, de première ligne : paracétamol ou analgésiques de ce type. Si le patient dit que la douleur ne s'est pas calmée avec la prise d'analgésique habituel, on l'écrit.</p>
+    <p><b>Conclure.</b> Si le patient présentait autre chose (par exemple de la fièvre), on l'écrit ; sinon on précise « pas de fièvre » et qu'il n'a pas d'autres symptômes en dehors du vomissement avec douleur. À la fin : il est référé / il est venu en consultation pour une meilleure prise en charge.</p>
+  </div>
+  <div class="card inc">
+    <p>Passages dont la lecture est incertaine : (1) la remarque sur « Patient(e) de 32 ans, pas besoin de dire l'âge… » avec la comparaison au mot espagnol « Paciente » ; (2) la liste exacte des deux derniers médicaments antihypertenseurs (je lis « énalapril » et « captopril », peu sûr) ; (3) le mot « cyclémique » (je crois lire « drépanocytaire » mais je ne tranche pas) ; (4) la phrase finale sur le motif de la référence du patient.</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>HMA = la maladie qui motive la consultation, racontée de façon chronologique.</li>
+      <li>Un symptôme décrit (douleur) peut amener un signe (vomissement) : il faut alors le détailler (contenu, quantité, nombre, volume, aspect, moment).</li>
+      <li>Noter ce qui n'a pas calmé la douleur (analgésique de première ligne : paracétamol).</li>
+      <li>Patient chronique : écrire le traitement, la dose par jour, la régularité.</li>
+    </ul>
+  </div>
+
+  <h3 id="c1-ant">5. Antécédents, allergies, habitudes toxiques</h3>
+  <p>Ordre des chapitres après l'anamnèse, tel qu'il est enseigné :</p>
+  <div class="flow"><span class="st">Antécédents pathologiques personnels</span><span class="ar">→</span><span class="st">Antécédents familiaux (hérédo)</span><span class="ar">→</span><span class="st">Antécédents chirurgicaux</span><span class="ar">→</span><span class="st">Allergies</span><span class="ar">→</span><span class="st">Habitudes toxiques</span></div>
+
+  <h4>Antécédents pathologiques personnels</h4>
+  <div class="card note">
+    <p>Le patient avait-il des antécédents ? S'il en avait, il faut le dire ; sinon on fait une autre anamnèse. Si on ne l'a pas écrit, il faut l'écrire. S'il n'y a pas d'antécédent, on écrit « aucun antécédent ».</p>
+  </div>
+  <h4>Antécédents pathologiques familiaux (hérédo)</h4>
+  <div class="card note">
+    <p>Antécédent pathologique familial, ou héréditaire (« hérédo » ou « héréditaire »).</p>
+    <p class="q">Que cherche-t-on ?</p>
+    <p>On cherche si une personne de la famille a fait la même maladie. Par exemple le diabète ou l'hypertension : si le patient fait ces maladies, on demande s'il y a quelqu'un dans la famille qui en souffre. Même si le patient n'a pas de sucre, à partir de la douleur qu'il présente, on peut avoir un antécédent familial (exemple du furoncle : on peut demander s'il y a des diabétiques dans la famille).</p>
+    <p>Dans l'hérédo-familial, on cherche surtout les maladies chroniques : épilepsie, asthme bronchique, HTA, diabète, cancer, mais aussi certaines maladies infectieuses. On ne cherche pas un furoncle banal ou une cellulite banale : ce sont des infections banales. On cherche aussi les maladies psychiatriques.</p>
+  </div>
+  <div class="card inc">
+    <p>Le paragraphe sur le furoncle est en créole et la logique exacte n'est pas claire ; je lis : « un patient qui a un furoncle peut amener à chercher un diabète dans la famille ». À confirmer.</p>
+  </div>
+  <h4>Antécédents chirurgicaux</h4>
+  <div class="card note">
+    <p>On cherche si la personne n'a pas déjà été opérée, ou si elle a été opérée pour le même problème, et la <b>date de l'intervention</b>, très importante.</p>
+    <p class="q">Pourquoi savoir si le patient a déjà été opéré et quand ?</p>
+    <p>Pour pouvoir changer le pansement, et à cause de la date de l'intervention, notamment si c'est un fait récent qui peut entraîner des complications.</p>
+    <p><b>Exemple (appendicite).</b> Si le patient a déjà été opéré d'une appendicite et revient pour une douleur de la fosse iliaque droite, on ne pense pas à une appendicite puisque l'appendice a été enlevé ; on pense à autre chose : chez la femme un abcès tubo-ovarien ou une salpingite ; chez l'homme une lithiase (par exemple). Si l'opération date de 1 ou 2 ans, c'est un autre contexte.</p>
+    <p><b>Opération récente.</b> Si le patient vient avec une douleur à la fosse iliaque droite et a été opéré 6, 12, 15 ou 20 jours avant, on peut penser à un abcès ou à une complication post-opératoire ; l'urgence est à évaluer. Si je sais que le malade a été opéré il y a peu de temps, je peux différer l'intervention et le laisser récupérer. Tout est important : il faut savoir la date et le type d'opération.</p>
+  </div>
+  <div class="card inc">
+    <p>Le raisonnement sur « douleur de la fosse iliaque droite chez un patient déjà opéré d'appendicite » est de lecture difficile (mélange créole/français). Je lis qu'on n'évoque pas l'appendicite si l'appendice a été retiré. À confirmer avec toi ou ton enseignant. L'usage de « lithiase » est repris tel que je le lis.</p>
+  </div>
+  <h4>Allergies</h4>
+  <div class="card note">
+    <p>Qu'est-ce qui vient ensuite ? La réaction allergique. Il est important de savoir si le patient est allergique à quelque chose, à un médicament quelconque qu'il va prendre. Une allergie peut provoquer une réaction anaphylactique qui peut tuer un patient ; il faut donc savoir si le patient est allergique (très important). On ne l'oublie pas avec certains produits.</p>
+  </div>
+  <h4>Habitudes toxiques</h4>
+  <div class="card note">
+    <p>Quelles habitudes chercher chez un patient ? S'il boit de l'alcool : quelle importance ? Quand on opère des personnes alcooliques, au moment de donner l'anesthésie, on connaît ces habitudes ; elles peuvent orienter, donner un chemin vers un diagnostic. Par exemple, une personne qui fume et boit de l'alcool peut développer des douleurs de l'hypochondre droit : on pense à une douleur en rapport avec le foie, une pathologie hépatique. Ce sont des facteurs de risque : les gens qui ont ces pratiques ont beaucoup de chances de souffrir de maladies du foie, du pancréas, et de nombreuses autres maladies liées à l'alcoolisme, dont des cancers liés à l'alcoolisme.</p>
+    <p><b>Alcool : distinguer l'occasionnel du quotidien.</b> Il faut faire la différence en termes social : quelqu'un qui boit de temps en temps n'a pas le même risque que quelqu'un qui boit chaque jour (alcoolique).</p>
+    <p><b>Tabac, café, drogues (marijuana).</b> Il faut savoir comment la personne le prend et quel type de tabac : un cigare n'est pas la même chose qu'une pipe, ni qu'une cigarette. Une cigarette a un filtre ; non seulement le type de tabac compte, mais aussi la quantité fumée. Un paquet de cigarettes par jour n'est pas équivalent à 2 cigarettes, ni à fumer par à-coups (très important).</p>
+    <p><b>Café.</b> Il faut connaître le nombre de tasses de café par jour : une tasse de temps en temps n'est pas 3 ou 4 tasses. Les pathologies cardio-vasculaires sont liées à la quantité consommée.</p>
+    <p><b>Autres drogues.</b> Héroïne, cocaïne, marijuana, ecstasy : tous les types doivent entrer dans le dossier. Il y en a beaucoup d'autres, à noter aussi.</p>
+  </div>
+  <div class="card inc">
+    <p>Plusieurs phrases de ce passage sont en créole peu lisible (par exemple « selon sulen yap ba li di kajen… », « quatre d'œuvre »). Je les ai rendues au plus près du sens ci-dessus ; les chiffres éventuels sont ceux des notes.</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Ordre : antécédents personnels → familiaux (hérédo) → chirurgicaux → allergies → habitudes toxiques.</li>
+      <li>Antécédent chirurgical : type d'opération et date (une appendicectomie déjà faite change le raisonnement devant une douleur de la FID).</li>
+      <li>Allergie = risque de réaction anaphylactique : à demander systématiquement.</li>
+      <li>Alcool : occasionnel ≠ quotidien ; tabac : type et quantité ; café : nombre de tasses.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= COURS 2 ======================= -->
+<section class="cours rev" id="c2">
+  <h2><small>Cours 2 · mercredi 22 octobre (année notée 2026)</small>La douleur : étude sémiologique et anatomie de surface</h2>
+  <div class="card ecart">
+    <p>La date du cahier est « mercredi 22 octobre 2026 ». Or le 22 octobre 2026 tombe un jeudi, alors que le 22 octobre 2025 était un mercredi, et le cours 1 est daté du 14 octobre 2025. Je crois à une erreur d'année dans le cahier : [À VÉRIFIER].</p>
+  </div>
+  <div class="obj"><b>Objectifs d'apprentissage</b>
+    <ul>
+      <li>Définir signe, symptôme, syndrome.</li>
+      <li>Énumérer et appliquer les 11 caractéristiques sémiologiques de la douleur.</li>
+      <li>Savoir pourquoi connaître l'anatomie de surface de l'abdomen, ses 9 régions et ses repères, avant d'étudier une douleur abdominale.</li>
+    </ul>
+  </div>
+
+  <div class="card def">
+    <p><b>Sémiologie</b> : étude des signes et des symptômes.</p>
+    <p><b>Signes</b> : tout ce qui est objectif, observable, mesurable.</p>
+    <p><b>Symptômes</b> : tout ce qui est non objectif, non observable, non mesurable.</p>
+    <p><b>Syndrome</b> : ensemble de signes et de symptômes.</p>
+  </div>
+
+  <h3 id="c2-carac">Les caractéristiques sémiologiques de la douleur</h3>
+  <p>Exemple pris pour la douleur : ses caractéristiques sémiologiques, ou attributs.</p>
+  <div class="scroll"><table>
+    <tr><th>N°</th><th>Caractéristique</th><th>Ce que le cours en dit</th></tr>
+    <tr><td>1</td><td><b>Localisation / siège</b></td><td>Le siège permet de savoir quel organe pose problème ; mais ce n'est pas toujours exact en réalité : c'est une sorte d'orientation.</td></tr>
+    <tr><td>2</td><td><b>Durée</b></td><td>Est-ce une douleur chronique ou aiguë (brutale) ?</td></tr>
+    <tr><td>3</td><td><b>Intensité</b></td><td>Elle aide à connaître la ligne de médicaments que l'on peut utiliser pour le traitement de la douleur. Selon son intensité, la douleur est : sévère ou intense, modérée, légère. Elle peut orienter vers le type de pathologie du patient.</td></tr>
+    <tr><td>4</td><td><b>Fréquence (périodicité)</b></td><td>Certaines pathologies ont une périodicité (il y a des périodes où elles vont et viennent).</td></tr>
+    <tr><td>5</td><td><b>Irradiation</b></td><td>Supposons que la douleur soit toujours là, mais que le patient la ressente aussi ailleurs : il y a alors deux points de douleur.</td></tr>
+    <tr><td>6</td><td><b>Migration</b></td><td>La douleur se déplace : elle est partie d'un endroit et s'est déplacée vers un autre. Exemple de pathologie : l'appendicite.</td></tr>
+    <tr><td>7</td><td><b>Facteur déclenchant</b></td><td>Ce qui déclenche la douleur. Exemple : un jeûne prolongé peut causer un ulcère gastrique, parce qu'on passe trop de temps sans manger.</td></tr>
+    <tr><td>8</td><td><b>Circonstance de survenue</b></td><td>Dans quelles circonstances le patient a-t-il commencé à ressentir la douleur ?</td></tr>
+    <tr><td>9</td><td><b>Facteur aggravant</b></td><td>Ce qu'il prend ou fait qui aggrave la douleur (ce qui la rend plus forte).</td></tr>
+    <tr><td>(*)</td><td><b>Facteur calmant</b></td><td>Ce qu'il prend qui calme la douleur. Exemple : une personne qui a mal à l'estomac, prend du lait, et la douleur se calme : on peut alors penser à un ulcère gastrique.</td></tr>
+    <tr><td>10</td><td><b>Signes accompagnateurs</b></td><td>Ensemble des signes qui accompagnent la douleur. Exemple : douleur de l'hypochondre droit avec des yeux jaunes : cela traduit un problème du foie.</td></tr>
+    <tr><td>11</td><td><b>Types de douleur</b></td><td>Douleur de type colique ou crampe (une douleur qui donne l'impression de se tordre) ; douleur en coup de poignard ; douleur de type brûlure ; douleur de type pesanteur (« c'est un poids que l'on porte »).</td></tr>
+  </table></div>
+  <div class="card note">
+    <p>La douleur peut être un motif de consultation.</p>
+  </div>
+  <div class="card inc">
+    <p>La numérotation du cahier place « Calmant » avec un astérisque, entre le 9 et le 10, sans numéro. Les « types de douleur » sont numérotés 11 ; la fin du dernier type (pesanteur) tombe sur la page suivante (« ou santi se yon pwa wap pote »). Les types de douleur énumérés par le cahier sont ceux ci-dessus : je n'en ajoute pas d'autres.</p>
+  </div>
+  <div class="card ecart">
+    <p><b>« Dysurie = douleur »</b> (N.B. du cahier, avec les exemples <i>mastodynie</i> = douleur des seins et <i>anodynie</i> = douleur de l'anus). Je crois que le cahier veut dire : le suffixe <b>-odynie / -dynie</b> = douleur. Deux points à vérifier avec ton enseignant : (1) « dysurie » désigne en général une difficulté ou une douleur à la miction, pas la douleur en général ; (2) « anodynie » désigne plutôt l'absence de douleur ou un moyen qui calme la douleur. [À VÉRIFIER]</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Douleur = 11 caractéristiques : siège, durée, intensité, fréquence, irradiation, migration, facteur déclenchant, circonstance de survenue, facteur aggravant (et calmant), signes accompagnateurs, type.</li>
+      <li>Le siège est une orientation, pas une certitude.</li>
+      <li>La migration est la marque de l'appendicite.</li>
+      <li>L'intensité guide la ligne de médicament.</li>
+    </ul>
+  </div>
+
+  <h3 id="c2-anat">Anatomie de surface de l'abdomen</h3>
+  <div class="card note">
+    <p>Pour étudier, par exemple, une douleur abdominale, il faut d'abord connaître les pré-requis anatomiques de l'abdomen. Il faut connaître l'anatomie de surface de l'abdomen, à savoir les <b>9 régions</b>.</p>
+    <p>Après les pré-requis anatomiques, il faut connaître les <b>repères anatomiques</b> de la région abdominale. Exemples : le nombril ; l'appendice xiphoïde ; la symphyse pubienne ; la ligne blanche (quand la femme est enceinte, on la nomme <i>linea alba</i>) ; les épines iliaques antéro-supérieures ; les bords costaux.</p>
+    <p><b>N.B. :</b> le point de McBurney se forme à l'union du tiers externe et des 2 tiers internes. C'est un point très douloureux traduisant une appendicite aiguë.</p>
+  </div>
+  <figure class="reg">
+    <svg viewBox="0 0 360 330" role="img" aria-label="Les 9 régions de l'abdomen">
+      <text x="180" y="16" style="font:700 13px var(--corps);fill:var(--rouge);text-anchor:middle">Diaphragme</text>
+      <g class="reg">
+        <g tabindex="0"><rect x="30" y="26" width="100" height="90" rx="6"/><text x="80" y="66">Hypochondre</text><text x="80" y="82">droit</text></g>
+        <g tabindex="0"><rect x="130" y="26" width="100" height="90" rx="6"/><text x="180" y="76">Épigastre</text></g>
+        <g tabindex="0"><rect x="230" y="26" width="100" height="90" rx="6"/><text x="280" y="66">Hypochondre</text><text x="280" y="82">gauche</text></g>
+        <g tabindex="0"><rect x="30" y="116" width="100" height="90" rx="6"/><text x="80" y="150">Flanc droit</text><text x="80" y="166" style="font-weight:400">(région lombaire droite)</text></g>
+        <g tabindex="0"><rect x="130" y="116" width="100" height="90" rx="6"/><text x="180" y="158">Région</text><text x="180" y="174">ombilicale</text></g>
+        <g tabindex="0"><rect x="230" y="116" width="100" height="90" rx="6"/><text x="280" y="150">Flanc gauche</text><text x="280" y="166" style="font-weight:400">(région lombaire gauche)</text></g>
+        <g tabindex="0"><rect x="30" y="206" width="100" height="90" rx="6"/><text x="80" y="246">Fosse iliaque</text><text x="80" y="262">droite</text></g>
+        <g tabindex="0"><rect x="130" y="206" width="100" height="90" rx="6"/><text x="180" y="256">Hypogastre</text></g>
+        <g tabindex="0"><rect x="230" y="206" width="100" height="90" rx="6"/><text x="280" y="246">Fosse iliaque</text><text x="280" y="262">gauche</text></g>
+      </g>
+      <circle class="pulse" cx="62" cy="270" r="6"/>
+      <text x="180" y="318" style="font:600 12px var(--corps);fill:var(--gris);text-anchor:middle">Le point rouge marque la fosse iliaque droite (siège de l'appendicite)</text>
+    </svg>
+    <figcaption>Schéma d'après le cahier : la droite du patient est à gauche du dessin. Survole ou touche une région pour la surligner.</figcaption>
+  </figure>
+  <div class="card retenir">
+    <ul>
+      <li>9 régions : hypochondre droit, épigastre, hypochondre gauche / flanc droit, région ombilicale, flanc gauche / fosse iliaque droite, hypogastre, fosse iliaque gauche.</li>
+      <li>Repères : nombril, appendice xiphoïde, symphyse pubienne, ligne blanche, épines iliaques antéro-supérieures, bords costaux.</li>
+      <li>McBurney : union du tiers externe et des 2 tiers internes (ligne ombilic – épine iliaque) ; point très douloureux dans l'appendicite aiguë.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= COURS 3 ======================= -->
+<section class="cours rev" id="c3">
+  <h2><small>Cours 3</small>La douleur comme motif de consultation, l'abdomen aigu chirurgical et ses quatre syndromes</h2>
+  <div class="obj"><b>Objectifs d'apprentissage</b>
+    <ul>
+      <li>Citer des motifs de consultation et reconnaître les cinq issues possibles d'une consultation pour douleur.</li>
+      <li>Définir la douleur chirurgicale et l'abdomen aigu chirurgical.</li>
+      <li>Nommer les 4 syndromes de l'abdomen aigu et leurs caractéristiques.</li>
+    </ul>
+  </div>
+  <h3>Motifs de consultation</h3>
+  <div class="card note">
+    <p class="q">Qu'est-ce qui peut motiver une personne à aller voir un médecin ?</p>
+    <p>Plusieurs causes peuvent être un motif de consultation, par exemple : douleur, hémorragie, diarrhée, vomissement, éruption cutanée, cécité, infertilité, perte d'appétit, perte de l'odorat, dyspnée, brûlure mictionnelle, etc. Certains de ces motifs peuvent être plus fréquents, plus graves.</p>
+  </div>
+  <h3>Étude de la douleur : cinq scénarios</h3>
+  <div class="card note">
+    <p>La douleur semble être le motif de consultation le plus rencontré. Il faut savoir que la douleur est considérée comme un symptôme.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>Scénario</th><th>Ce qui se passe</th></tr>
+    <tr><td>1</td><td>Le patient vient pour douleur ; après interrogatoire, le médecin l'envoie chez lui <b>sans médicament</b> (exemple : douleur à la gorge) : il peut le conseiller et le renvoyer.</td></tr>
+    <tr><td>2</td><td>Après interrogatoire, le médecin <b>prescrit des médicaments</b> correspondant au type de douleur et le renvoie chez lui <b>sans examens</b>, car 95 % des diagnostics sont cliniques (chiffre des notes). Exemple : une douleur due à une contusion.</td></tr>
+    <tr><td>3</td><td>Le patient est vu, interrogé, puis <b>observé aux urgences</b> pendant environ 6 h en moyenne, puis renvoyé chez lui.</td></tr>
+    <tr><td>4</td><td>Après interrogatoire et toute autre procédure, le médecin recommande l'<b>hospitalisation</b> ; après guérison, le patient reçoit son exéat (autorisation de sortie).</td></tr>
+    <tr><td>5</td><td>On peut tout faire pour le patient : il <b>entre en salle d'opération</b> et, après rémission complète, il est renvoyé chez lui.</td></tr>
+  </table></div>
+  <div class="card inc">
+    <p>Le chiffre « 95 % » (peut-être 98 %) ; le scénario 3 (« 6 h » ou « 6 h de temps ») ; la fin du scénario 4 : « Après lè fini… yo egzeyate l », que je lis « après guérison, on lui donne l'exéat ».</p>
+  </div>
+  <div class="card piege">
+    <p>Le scénario 5 correspond à la <b>douleur chirurgicale</b>. Dans ce genre de douleur, il <b>ne faut pas donner de médicaments</b> au patient : il faut attendre l'évaluation du chirurgien. Si cette douleur est localisée au niveau de l'abdomen, on la nomme <b>abdomen aigu chirurgical</b>.</p>
+  </div>
+  <h3>L'abdomen aigu chirurgical</h3>
+  <div class="card note">
+    <p><b>Pour parler de pathologie de l'abdomen aigu, on doit avoir :</b></p>
+    <ul>
+      <li>une douleur localisée au niveau de l'abdomen ;</li>
+      <li>une douleur à apparition brutale ;</li>
+      <li>une pathologie nécessitant une intervention chirurgicale urgente.</li>
+    </ul>
+    <p>Donc l'abdomen aigu chirurgical se définit aussi ainsi : <b>c'est un ensemble de pathologies abdominales caractérisées par une douleur brusque nécessitant une intervention chirurgicale urgente.</b></p>
+    <p>Exemples : appendicite aiguë, ulcère perforé, grossesse extra-utérine rompue, cholécystite aiguë, occlusion sur bride, rupture de la rate, hernie étranglée.</p>
+    <p>Autres exemples donnés plus bas dans le cahier : invagination intestinale, volvulus (torsion, occlusion), kyste tordu de l'ovaire, abcès tubo-ovarien, salpingite, pancréatite.</p>
+    <p>Toutes ces pathologies sont des abdomens aigus chirurgicaux, mais elles sont différentes les unes des autres ; cependant, certaines d'entre elles se ressemblent.</p>
+  </div>
+  <div class="card ecart">
+    <p>Sous l'intitulé « Appendicite aiguë », le cahier recopie presque mot à mot la définition de l'abdomen aigu : « pathologie caractérisée par l'apparition d'une douleur brusque, intense au niveau de l'abdomen nécessitant une intervention chirurgicale urgente ». Cette phrase décrit l'abdomen aigu chirurgical en général ; l'appendicite aiguë est une inflammation aiguë de l'appendice (voir le cours 5). Je conserve la note telle quelle et je te laisse la confirmer avec ton enseignant. [À VÉRIFIER]</p>
+  </div>
+
+  <h3>Les quatre syndromes de l'abdomen aigu</h3>
+  <div class="card note"><p>L'abdomen aigu est divisé en <b>4 syndromes</b> :</p></div>
+  <div class="scroll"><table>
+    <tr><th>Syndrome</th><th>Autre nom</th><th>Caractéristiques (cours 3)</th></tr>
+    <tr><td><b>1. Péritonéal</b></td><td>« Abdomen aigu infecté »</td><td>Douleur intense et continue ; fièvre ; tachycardie ; signes d'infection ; réaction péritonéale (rigidité à la palpation, douleur à la décompression).</td></tr>
+    <tr><td><b>2. Occlusif</b></td><td>« Abdomen aigu occlusif »</td><td>Douleur de type colique (douleur par intermittence, intense, non continue) ; distension abdominale ; vomissement ; arrêt des gaz et des matières.</td></tr>
+    <tr><td><b>3. Hémorragique</b></td><td>—</td><td>Douleur intense et continue ; réaction péritonéale (contracture) ; pâleur des conjonctives ; tachycardie ; signes de collapsus (voir note) ; extrémités froides ; sueurs profuses. Tension basse.</td></tr>
+    <tr><td><b>4. Mixte ou ischémique</b></td><td>—</td><td>Englobe tous les signes des 3 autres : c'est une pathologie qui comprend tout ce que les autres pathologies présentent.</td></tr>
+  </table></div>
+  <div class="card note">
+    <p><b>Notes complémentaires.</b> Syndrome occlusif : occlusion ⇒ obstruction ⇒ obstacle. Syndrome hémorragique : le sang est un produit chimique ; <b>le sang est un irritant sauf dans les vaisseaux sanguins</b> (c'est pourquoi un sang libre dans l'abdomen donne une réaction péritonéale).</p>
+  </div>
+  <div class="card inc">
+    <p>Sur la liste du syndrome hémorragique : « pâleur au niveau des conjonctives (conjonctive en … de poisson ?) » ; puis « signes lib… (pas bien perçu) ». Je crois lire « signes lipothymiques » mais je ne le tranche pas. Dans la phrase d'introduction, le cahier écrit pour le péritonéal : « avant la rigidité à la palpation et douloureuse à la décompression » : je lis « [réaction péritonéale :] rigidité à la palpation et douleur à la décompression ».</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Abdomen aigu chirurgical = douleur abdominale brutale + urgence chirurgicale.</li>
+      <li>Ne pas donner de médicament à une douleur chirurgicale avant l'évaluation du chirurgien.</li>
+      <li>4 syndromes : péritonéal (infecté), occlusif, hémorragique, mixte/ischémique.</li>
+      <li>Péritonéal : douleur continue + fièvre + tachycardie. Occlusif : colique + distension + vomissement + arrêt des gaz et des matières. Hémorragique : pâleur + tachycardie + extrémités froides + sueurs + tension basse.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= COURS 4 ======================= -->
+<section class="cours rev" id="c4">
+  <h2><small>Cours 4</small>Le syndrome péritonéal et les péritonites</h2>
+  <div class="obj"><b>Objectifs d'apprentissage</b>
+    <ul>
+      <li>Expliquer pourquoi la contracture et le rebond définissent le syndrome péritonéal.</li>
+      <li>Distinguer signes fonctionnels, généraux et physiques.</li>
+      <li>Expliquer le troisième secteur et l'oligurie qui en découle.</li>
+      <li>Classer les péritonites : primaire, secondaire, tertiaire.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-synd">Syndrome péritonéal : définition et signes</h3>
+  <div class="card note">
+    <p><b>Syndrome péritonéal ⇒ péritonite ou abdomen aigu infecté ⇒ infection.</b></p>
+    <p>Caractéristiques du syndrome péritonéal : 1) douleur ; 2) fièvre ; 3) tachycardie ; 4) vomissement ; 5) arrêt des gaz et des matières.</p>
+    <p>L'organe atteint lors d'un syndrome péritonéal est le <b>péritoine</b> : il y a une intense inflammation du péritoine, donc le péritoine réagit. Il y a alors contracture ⇒ défense ⇒ réaction péritonéale (rebond). Le maître symptôme est la contracture.</p>
+    <p><b>N.B. :</b> les 2 signes qui définissent la présence d'un syndrome péritonéal sont <b>la contracture et la réaction péritonéale</b>. Ces 2 signes sont appelés <b>« signes péritonéaux »</b>.</p>
+  </div>
+  <div class="card inc"><p>« Le maître symptôme est la contracture » : je lis ainsi la fin de la phrase, mal lisible. Le cahier dit « symptôme » alors que la contracture est un signe (voir cours 1-2) : à vérifier.</p></div>
+  <div class="card note">
+    <p>En cas de syndrome, il y aura : des signes fonctionnels, des signes généraux, des signes physiques.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>Catégorie</th><th>Ce qu'elle traduit</th><th>Exemples du cahier</th></tr>
+    <tr><td><b>Signes fonctionnels</b></td><td>Un dysfonctionnement : normalement, si le tube digestif fonctionne bien, on ne ressent pas de douleur et on ne vomit pas.</td><td>Douleur, vomissement, arrêt des gaz et des matières.</td></tr>
+    <tr><td><b>Signes généraux</b></td><td>La répercussion du problème sur tout l'organisme.</td><td>Fièvre, tachycardie.</td></tr>
+    <tr><td><b>Signes physiques</b></td><td>Tout ce qu'on trouve chez le patient quand on l'examine.</td><td>Contracture, douleur, rebond.</td></tr>
+  </table></div>
+  <div class="card note">
+    <p>En conclusion : la douleur et le vomissement sont des signes fonctionnels qui disent qu'il y a un dysfonctionnement au sein de l'organisme. L'arrêt des gaz et des matières est aussi un signe fonctionnel.</p>
+  </div>
+
+  <h3 id="c4-3s">Le troisième secteur</h3>
+  <div class="card note">
+    <p><b>N.B. :</b> en cas de péritonite, il va y avoir la formation d'un « 3<sup>e</sup> secteur ». <span class="q">Qu'est-ce que le 3<sup>e</sup> secteur ?</span></p>
+    <p>L'eau utile dans le corps se distribue en 2 espaces ou secteurs : <b>intracellulaire</b> et <b>extracellulaire</b>. L'espace extracellulaire se divise en <b>intravasculaire</b> et <b>interstitiel</b>. L'eau doit normalement se trouver dans ces 2 secteurs. Quand de l'eau se distribue ailleurs que dans ces 2 secteurs, on dit qu'il y a formation d'un 3<sup>e</sup> secteur. Exemples : ascite dans la cavité péritonéale, hémothorax, hémopéritoine.</p>
+  </div>
+  <div class="card note">
+    <p>Quand on a une péritonite, le péritoine sécrète : du liquide s'accumule dans la cavité péritonéale, les anses se dilatent aussi, et du liquide s'accumule à l'intérieur des anses : cela constitue un 3<sup>e</sup> secteur.</p>
+    <p>Cette eau vient du corps de la personne : cela entraîne une <b>baisse de la volémie</b>. La baisse de la volémie cause une <b>oligurie</b> : il y a moins de sang qui va vers les reins, donc la filtration glomérulaire diminue, les urines sont concentrées, il y a moins de production d'urine, d'où l'oligurie. La baisse de volume entraîne aussi des signes de déshydratation (lèvres sèches, par exemple).</p>
+  </div>
+  <div class="flow"><span class="st">Péritonite</span><span class="ar">→</span><span class="st">Liquide dans la cavité et les anses (3<sup>e</sup> secteur)</span><span class="ar">→</span><span class="st">↓ volémie</span><span class="ar">→</span><span class="st">↓ perfusion rénale, ↓ filtration glomérulaire</span><span class="ar">→</span><span class="st">Oligurie + déshydratation</span></div>
+  <div class="card retenir">
+    <ul>
+      <li>Signes péritonéaux = contracture + rebond (réaction péritonéale).</li>
+      <li>Fonctionnels : douleur, vomissement, arrêt des gaz/matières. Généraux : fièvre, tachycardie. Physiques : contracture, douleur, rebond.</li>
+      <li>3<sup>e</sup> secteur : eau hors des secteurs intra- et extracellulaire (intravasculaire + interstitiel) → ↓ volémie → oligurie.</li>
+    </ul>
+  </div>
+
+  <h3 id="c4-contr">Pourquoi la contracture ? Le rebond ? Pourquoi l'arrêt des gaz ?</h3>
+  <div class="card note">
+    <p class="q">Pourquoi y a-t-il contracture en cas de syndrome péritonéal ?</p>
+    <p>Les 2 poumons font 2 mouvements lors de la respiration (inspiration et expiration), ce qui donne comme conséquence une réduction ou une augmentation de l'abdomen selon le mouvement du diaphragme (s'il monte ou s'il descend). La respiration est possible grâce à un ensemble de mécanismes et à la participation d'un ensemble d'organes dont l'abdomen. <b>L'abdomen participe à la respiration par la contraction de la paroi abdominale.</b></p>
+    <p>Dans le syndrome péritonéal, il y a de la douleur : pour la soulager, la personne se met en <b>position antalgique</b> (couchée). L'abdomen, en participant à la respiration, augmente la douleur : le péritoine est enflammé. L'organisme fait donc <b>contracter les muscles abdominaux</b> pour les empêcher de participer à la respiration, ce qui calme un peu la douleur : d'où la contracture dans le syndrome péritonéal.</p>
+  </div>
+  <div class="flow"><span class="st">Péritoine enflammé</span><span class="ar">→</span><span class="st">Respiration = mouvement de la paroi = douleur</span><span class="ar">→</span><span class="st">Muscles abdominaux contractés</span><span class="ar">→</span><span class="st">Paroi immobilisée, douleur diminuée</span></div>
+  <div class="card retenir"><p>La contracture est un moyen de défense créé par l'organisme afin de diminuer la douleur.</p></div>
+  <div class="card note">
+    <p><b>Le rebond (réaction péritonéale).</b> Le médecin qui veut examiner le malade fait une palpation en appuyant sur la paroi abdominale. En <b>lâchant brusquement</b> la paroi, cela provoque de la douleur, d'où le nom de rebond ou réaction péritonéale ⇒ douleur due à la décompression brusque de la paroi abdominale.</p>
+  </div>
+  <div class="card inc"><p>Le cahier écrit « en contractant sur la paroi abdominale » : je lis « en comprimant / en appuyant » mais le mot exact n'est pas sûr.</p></div>
+  <div class="card note">
+    <p><b>Arrêt des gaz et des matières.</b> Dans un syndrome péritonéal, il y a arrêt des gaz et des matières, du fait d'une diminution ou d'une inhibition du péristaltisme des anses : on parle d'<b>iléus réflexe</b>. Il n'y a plus de mouvement des anses, plus de progression du contenu intestinal, comme chez une personne constipée.</p>
+  </div>
+
+  <h3 id="c4-perit">Les péritonites</h3>
+  <div class="card def"><p><b>Péritoine + infection = péritonite.</b> Péritonite : inflammation du feuillet péritonéal. Les péritonites peuvent être : primaires, secondaires, tertiaires.</p></div>
+  <div class="scroll"><table>
+    <tr><th></th><th>Primaire</th><th>Secondaire</th><th>Tertiaire</th></tr>
+    <tr><td><b>Cause</b></td><td>Sans cause intra-abdominale : la cause n'est pas dans la cavité péritonéale (pas due à une infection ou à un organe de l'abdomen) ; extra-péritonéale.</td><td>Secondaire à une affection abdominale (organe péritonéal, dans l'abdomen).</td><td>Péritonite secondaire mal traitée : la cause initiale n'est plus là, la péritonite persiste.</td></tr>
+    <tr><td><b>Terrain</b></td><td>Âges extrêmes (bébé, personne âgée) ; immunodéficience (malnutrition, diabète, cancer, infection virale).</td><td>Sujet jeune.</td><td>Immunodéficience ; patient opéré à plusieurs reprises (relaparotomie, laparotomie, relaparotomie).</td></tr>
+    <tr><td><b>Évolution</b></td><td>Rapide, tableau toxique infectieux, altération de l'état général ; tableau fulminant.</td><td>Évolution progressive ; la plus fréquente des péritonites (90 %, chiffre des notes).</td><td>—</td></tr>
+    <tr><td><b>Germes</b></td><td>—</td><td>—</td><td>Pas les germes habituels d'une péritonite : par exemple mycose, champignons, virus.</td></tr>
+  </table></div>
+  <div class="card note">
+    <p><b>Primaire :</b> comment une personne peut-elle développer une pathologie grave sans que la cause vienne de l'abdomen, alors que l'abdomen a une capacité de défense ? Il faut qu'il y ait une prédisposition, et ce sont généralement les immunodéficiences (malnutrition, diabète, cancer, infection virale).</p>
+    <p>Résumé du cahier : cause extra-péritonéale, âge extrême, tableau fulminant, immunodéficience.</p>
+  </div>
+  <div class="card note">
+    <p><b>Causes d'une péritonite secondaire.</b> Elle peut provenir d'un organe gynécologique (seulement chez la femme) ou d'un organe non gynécologique (chez l'homme et la femme). Elle peut être due :</p>
+    <ul>
+      <li>à une <b>diffusion</b> : un organe malade qui, par proximité avec un autre organe, contamine l'autre organe et le péritoine ;</li>
+      <li>à une <b>perforation</b> : l'organe infecté se perfore et déverse son contenu dans la cavité péritonéale.</li>
+    </ul>
+    <p><b>Causes inflammatoires</b> (exemples) : appendicite, cholécystite, diverticulite, pancréatite, salpingite, maladie de Crohn.</p>
+    <p><b>Causes perforantes</b> : perforation typhique, traumatisme, ulcère perforé.</p>
+  </div>
+  <div class="card retenir">
+    <ul>
+      <li>Primaire : cause hors de la cavité péritonéale + âge extrême/immunodéficience + fulminant.</li>
+      <li>Secondaire : maladie abdominale (inflammatoire ou perforée) ; jeune ; la plus fréquente.</li>
+      <li>Tertiaire : secondaire mal traitée, immunodéficience, multiples réinterventions, germes inhabituels.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= COURS 5 ======================= -->
+<section class="cours rev" id="c5">
+  <h2><small>Cours 5</small>L'appendicite aiguë ou douleur appendiculaire</h2>
+  <div class="obj"><b>Objectifs d'apprentissage</b>
+    <ul>
+      <li>Reconnaître les caractéristiques sémiologiques de la douleur appendiculaire.</li>
+      <li>Expliquer pourquoi l'appendice s'enflamme et pourquoi la douleur commence à l'épigastre puis migre.</li>
+      <li>Expliquer l'accalmie traîtresse de Dieulafoy.</li>
+      <li>Conduire l'interrogatoire et les 4 temps de l'examen physique de l'abdomen et connaître les signes de l'appendicite.</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-douleur">La douleur appendiculaire : comment la reconnaître</h3>
+  <div class="card note">
+    <p class="q">Comment reconnaître une douleur appendiculaire ?</p>
+    <p>Pour reconnaître une douleur appendiculaire, il faut reconnaître avant tout les caractéristiques sémiologiques de la douleur appendiculaire.</p>
+    <ul>
+      <li><b>Siège :</b> « la fosse iliaque droite » ; mais elle a un <b>début épigastrique</b> ou « région péri-ombilicale ».</li>
+      <li><b>Intensité :</b> douleur légère à modérée.</li>
+      <li><b>Migration :</b> elle commence dans la région épigastrique mais migre vers la fosse iliaque droite après quelques heures (minimum 6 heures de temps) ; cette douleur est alors plus intense au <b>point de McBurney</b> !!!</li>
+      <li><b>Signes accompagnateurs :</b> nausée et/ou vomissement, fébricule (petite fièvre ne dépassant pas 38,5°), perte de l'appétit.</li>
+      <li><b>Facteur déclenchant :</b> non connu.</li>
+      <li><b>Facteur calmant :</b> position antalgique (position en « chien de fusil »).</li>
+    </ul>
+  </div>
+  <figure>
+    <svg viewBox="0 0 320 260" role="img" aria-label="Migration de la douleur appendiculaire et point de McBurney">
+      <path d="M60 40 Q160 10 260 40 Q290 130 250 220 Q160 250 70 220 Q30 130 60 40Z" fill="#fff" stroke="#1B4FA0" stroke-width="3"/>
+      <circle cx="160" cy="70" r="14" fill="#F2B705" opacity=".55"><animate attributeName="opacity" values=".25;.8;.25" dur="2.4s" repeatCount="indefinite"/></circle>
+      <text x="160" y="52" text-anchor="middle" style="font:700 12px var(--corps);fill:#8A6500">Début épigastrique / péri-ombilical</text>
+      <circle cx="160" cy="130" r="5" fill="#14213D"/>
+      <text x="160" y="150" text-anchor="middle" style="font:600 12px var(--corps);fill:#14213D">Ombilic</text>
+      <circle cx="75" cy="200" r="5" fill="#14213D"/>
+      <text x="75" y="226" text-anchor="middle" style="font:600 11px var(--corps);fill:#14213D">Épine iliaque antéro-sup. D</text>
+      <line x1="160" y1="130" x2="75" y2="200" stroke="#1B4FA0" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="103" cy="177" r="3" fill="#1B4FA0"/><circle cx="132" cy="153" r="3" fill="#1B4FA0"/>
+      <circle class="pulse" cx="103" cy="177" r="7"/>
+      <text x="112" y="172" style="font:700 12px var(--corps);fill:#C8283C">McBurney</text>
+      <path d="M150 85 Q120 130 108 168" fill="none" stroke="#C8283C" stroke-width="3" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" from="22" to="0" dur="1.6s" repeatCount="indefinite"/></path>
+      <text x="262" y="110" text-anchor="end" style="font:600 11px var(--corps);fill:#5B6478">(D du patient</text>
+      <text x="262" y="124" text-anchor="end" style="font:600 11px var(--corps);fill:#5B6478">= gauche du dessin)</text>
+    </svg>
+    <figcaption>La douleur part de l'épigastre ou du péri-ombilical et migre vers la fosse iliaque droite, où elle est maximale au point de McBurney (union du tiers externe et des 2 tiers internes de la ligne ombilic – épine iliaque antéro-supérieure).</figcaption>
+  </figure>
+  <div class="card retenir">
+    <ul>
+      <li>Épigastre/péri-ombilical → fosse iliaque droite, après au moins 6 h, maximum au McBurney.</li>
+      <li>Légère à modérée ; nausée/vomissement, fébricule ≤ 38,5°, perte d'appétit.</li>
+      <li>Calmée par la position antalgique (chien de fusil).</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-anat">Rappel anatomique et physiopathologie</h3>
+  <div class="card note">
+    <p><b>Rappel anatomique.</b> L'appendice est ainsi nommé parce que c'est un petit organe appendu au cæcum. C'est un organe très long. L'appendice peut prendre plusieurs formes (schémas du cahier). Il est constitué : d'une <b>lumière étroite</b> et d'une <b>paroi</b>.</p>
+    <p>L'appendice est un <b>cul-de-sac</b> : il n'a pas de sortie. Le problème que présente l'appendice, c'est qu'il est appendu : comme il est en haut… n'importe quoi peut y tomber facilement.</p>
+  </div>
+  <div class="card inc"><p>La fin de la phrase « paske lò ariba, nenpòt bagay ka tonbe ladan l fasil » est de lecture incertaine ; je lis « parce qu'il est suspendu, n'importe quoi peut facilement y tomber ». De même, « organe très long » est repris tel que lu ; une rature empêche de confirmer si c'est la forme « petit » ou « long » qui est voulue en début de phrase.</p></div>
+  <div class="card note">
+    <p class="q">Pourquoi l'appendicite est-elle l'affection la plus fréquente parmi les causes de syndrome péritonéal ?</p>
+    <ul>
+      <li>parce que l'appendice est un organe très long avec une lumière étroite ;</li>
+      <li>parce qu'il est dans un milieu où il est appendu en cul-de-sac ;</li>
+      <li>parce qu'il est dans une zone riche en bactéries ;</li>
+      <li>parce que c'est un organe lymphoïde qui répond aux infections.</li>
+    </ul>
+    <p><b>N.B. :</b> l'appendice est formé de tissus lymphoïdes : il répond à des inflammations, à des infections ; c'est pourquoi on l'appelle <b>« l'amygdale de l'abdomen »</b>.</p>
+    <p class="q">Différence entre fécalite et fécalome ?</p>
+    <p>Fécalite : petite selle dure comme une pierre. Fécalome : grosse selle dure comme une pierre.</p>
+  </div>
+  <div class="card note">
+    <p class="q">Comment a-t-on une douleur appendiculaire ?</p>
+    <p>Quelle que soit la cause, l'appendicite est provoquée par une <b>obstruction de la lumière appendiculaire</b>. L'obstruction peut être causée par : une fécalite (petite selle dure comme une pierre) ; un parasite ; un corps étranger ; une tumeur ou un cancer.</p>
+    <p>Quelle que soit la cause de l'obstruction, cela provoque une <b>stase</b> au niveau de l'organe, et cela entraîne une <b>multiplication des germes</b>. La multiplication des germes produit du <b>gaz</b>.</p>
+  </div>
+  <div class="flow"><span class="st">Obstruction de la lumière</span><span class="ar">→</span><span class="st">Stase</span><span class="ar">→</span><span class="st">Multiplication des germes</span><span class="ar">→</span><span class="st">Gaz</span><span class="ar">→</span><span class="st">↑ pression, distension de la paroi</span></div>
+
+  <details open>
+    <summary>Pourquoi la douleur commence-t-elle dans la région épigastrique ?</summary>
+    <div class="body">
+      <div class="card note">
+        <p>Les germes se multiplient dans l'organe et produisent du gaz. Comme l'organe est bouché, le gaz produit à l'intérieur et la pression qui en résulte entraînent une <b>distension de la paroi</b> ; cette distension donne la douleur. Il y a une connexion entre le plexus solaire et la paroi : donc l'irritation du plexus solaire donne la douleur dans la région épigastrique.</p>
+      </div>
+      <div class="card inc"><p>Phrases en créole peu lisibles ; ma lecture : « une connexion entre le plexus solaire (qui est au niveau de l'épigastre) et la paroi, donc la distension de la paroi irrite le plexus solaire et donne une douleur dans la région épigastrique ». Le dessin à gauche (côlon, cæcum, appendice) est joint dans le cahier.</p></div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>Perforation et accalmie traîtresse de Dieulafoy</summary>
+    <div class="body">
+      <div class="card note">
+        <p>Dans le cas où l'organe est perforé, son contenu se déverse dans la cavité abdominale, sous l'effet de la forte pression qui existait à l'intérieur de l'organe. Une fois l'organe perforé, il y a une <b>baisse brusque de la pression</b>, ce qui entraîne une <b>accalmie</b> (la douleur se calme) : cette accalmie se nomme <b>« accalmie traîtresse de Dieulafoy »</b>.</p>
+        <p><b>Recherche personnelle notée dans le cahier (examen).</b> L'accalmie traîtresse de Dieulafoy dans l'appendicite aiguë correspond à une diminution trompeuse de la douleur, alors que la maladie s'aggrave en réalité.</p>
+        <p>Premièrement, l'appendice s'enflamme et il y a une distension de la paroi entraînant une douleur intense. L'inflammation évolue vers une <b>ischémie</b>, ce qui provoque une <b>nécrose</b> de l'organe, d'où une destruction des terminaisons nerveuses. L'organe subit alors une perforation, à cause de la pression à l'intérieur de l'organe et à cause de la nécrose. Le contenu de l'organe se déverse dans la cavité abdominale ; il se produit donc une <b>diminution transitoire de la douleur</b> et le patient se sent mieux. <b>Mais ce n'est pas une guérison.</b></p>
+        <p>L'accalmie traîtresse est due à la nécrose entraînant la destruction des fibres nerveuses, marquant l'évolution vers la perforation et la péritonite.</p>
+      </div>
+      <div class="card piege">
+        <p><b>N.B.</b> Dans ce cas, le clinicien doit faire très attention : le patient peut venir en consultation pendant que la douleur a diminué, alors qu'il y a une péritonite en train de se généraliser.</p>
+      </div>
+      <div class="card inc"><p>Dernière phrase du N.B. en créole : je lis « le patient vient en consultation pendant que la douleur a diminué, parce qu'il se sent mieux, alors que la péritonite se généralise ». À confirmer.</p></div>
+    </div>
+  </details>
+  <div class="card retenir">
+    <ul>
+      <li>Cause commune : obstruction de la lumière (fécalite, parasite, corps étranger, tumeur) → stase → germes → gaz → distension.</li>
+      <li>Début épigastrique : distension de la paroi + connexion avec le plexus solaire.</li>
+      <li>Accalmie traîtresse : la douleur diminue (nécrose des fibres nerveuses, chute de pression à la perforation) alors que la maladie s'aggrave.</li>
+      <li>Appendice = « amygdale de l'abdomen » (tissu lymphoïde).</li>
+    </ul>
+  </div>
+
+  <h3 id="c5-inter">Comment se présente le patient : l'interrogatoire</h3>
+  <div class="card note">
+    <ol>
+      <li>Le patient vient avec une douleur de la fosse iliaque droite (FID) ; l'interrogatoire retrouve le début épigastrique : c'est la douleur initiale, plus tard migrée.</li>
+      <li>Le patient a un <b>faciès crispé</b> ou <b>faciès péritonéal</b>.</li>
+      <li>On demande s'il a eu de la fièvre : il dit avoir eu de la fièvre (rappel : c'est une fébricule).</li>
+      <li>Il dit ne pas manger, non par manque de moyens mais par <b>manque d'appétit</b> (inappétence).</li>
+      <li>On demande s'il a vomi : il peut dire avoir vomi une fois ou deux, pas plus.</li>
+      <li>Le patient peut avoir un arrêt des gaz et des matières s'il a plusieurs jours avec la péritonite.</li>
+    </ol>
+    <p><b>Tout ceci correspond à l'interrogatoire !!!</b></p>
+  </div>
+  <div class="card inc">
+    <p>Points de lecture difficile dans la liste ci-dessus : le point 1 (« douleur qui part de l'épigastre… douleur initiale ») ; le point 2 (explication de « faciès crispé » entre parenthèses : je lis « traits tirés / crispés » mais elle est peu lisible) ; la fin du point 3.</p>
+  </div>
+
+  <h3 id="c5-exam">Examen physique</h3>
+  <div class="card note">
+    <p>Dès que le patient entre dans la salle de consultation, on remarque qu'il marche (précautionneusement), qu'il a un faciès crispé ; l'état général est conservé, calme, <b>au début</b> ; il sera altéré en cas de plusieurs jours avec la péritonite : conjonctives…, langue sèche, signes de déshydratation, fréquence cardiaque augmentée (tachycardie), urines concentrées (lecture).</p>
+  </div>
+  <div class="card inc"><p>La liste de l'état général « altéré après plusieurs jours » contient un mot que je n'arrive pas à lire (« …concentré(es) ») ; j'ai mis « urines concentrées » à titre d'hypothèse. Je lis aussi « langue sèche, signes de déshydratation, FC ↑ (tachycardie) ».</p></div>
+
+  <h4>Les 4 temps de l'examen de l'abdomen</h4>
+  <div class="flow"><span class="st">1 Inspection</span><span class="ar">→</span><span class="st">2 Palpation</span><span class="ar">→</span><span class="st">3 Percussion</span><span class="ar">→</span><span class="st">4 Auscultation</span></div>
+  <div class="card note">
+    <p>L'examen physique de l'abdomen contient 4 étapes : 1) inspection ; 2) palpation ; 3) percussion ; 4) auscultation. Donc, pour un patient venant en consultation pour appendicite, on procède à ces 4 étapes : Inspection – Palpation – Percussion – Auscultation (mnémotechnique du cahier : « INPAPEAU »).</p>
+  </div>
+  <div class="card ecart">
+    <p>Le cahier présente cet ordre comme « l'ordre normal de l'examen physique de l'abdomen ». Le <i>Bates' Guide to Physical Examination and History Taking</i> enseigne pour l'abdomen : inspection, <b>auscultation</b>, percussion, puis palpation (l'auscultation avant la palpation pour ne pas modifier les bruits intestinaux). L'enseignement français classique est souvent « inspection, palpation, percussion, auscultation ». À confirmer avec ton enseignant quel ordre est attendu à l'examen.</p>
+  </div>
+
+  <h4>Inspection de l'abdomen</h4>
+  <div class="card note">
+    <p>Regarder comment est l'abdomen ! Selon le patient, l'abdomen peut être plat, globuleux ou adipeux. Cependant, si le patient est déjà à un stade de péritonite avancée, on peut avoir un abdomen distendu.</p>
+    <p>L'abdomen peut aussi être asymétrique. Il faut suivre les mouvements respiratoires : chez un patient ayant une appendicite, l'abdomen ne suit pas les mouvements de la respiration, surtout à la FID, du fait des contractions. Pas de masse visible généralement en cas d'appendicite.</p>
+  </div>
+  <div class="card inc"><p>« Pas de masse visible généralement » : le mot « masse » est de lecture peu sûre (« pas de même visible »). À confirmer.</p></div>
+
+  <details open>
+    <summary>Signe de Chutro (?) : déviation de l'ombilic</summary>
+    <div class="body">
+      <div class="card note">
+        <p>Chez un patient qui a une appendicite, il y a de la douleur ; si on le touche, ou si on lui demande de faire un effort (lever…), apparaît un signe (nom du signe à confirmer). Le dessin du cahier montre la paroi abdominale : ligne blanche ou ligne médiane, grand droit de l'abdomen (rectus abdominis), cicatrice ombilicale, muscle oblique interne, muscle oblique externe, muscle transverse, muscle pyramidal ; forces F1 et F2 avec F1 = F2 (tonus musculaire).</p>
+        <p>Les muscles obliques (interne et externe), ainsi que les muscles transverses, s'étendent de chaque côté de la ligne médiane ; comme ils sont en équilibre (F1 = F2), la ligne médiane reste au milieu. <b>La ligne médiane est formée par l'entrecroisement des fibres de ces muscles.</b></p>
+        <p>Dans le cas d'une appendicite qui se trouve dans la FID, la douleur entraîne la contracture des muscles de ce côté : la force du côté droit devient supérieure, la ligne médiane et la cicatrice ombilicale sont tirées vers la droite : <b>déviation de l'ombilic à droite</b>, due à la contracture des muscles latéraux droits de l'abdomen.</p>
+      </div>
+      <div class="card inc">
+        <p>Le nom du signe est écrit « Chutier / Chutro / Sharmann » selon les passages. Je crois qu'il s'agit du <b>signe de Chutro</b> (déviation de l'ombilic vers la fosse iliaque droite dans l'appendicite) mais le nom est de lecture incertaine et je n'ai pas de référence à citer. [À VÉRIFIER]. Le paragraphe d'introduction du signe (ce que le patient fait quand on lui demande de lever…) est peu lisible, je ne l'ai pas reconstruit.</p>
+      </div>
+    </div>
+  </details>
+
+  <h4>Palpation de l'abdomen</h4>
+  <div class="card note">
+    <p>Un patient qui a une appendicite et qu'on palpe : la douleur sera plus grande au <b>point de McBurney</b>.</p>
+    <p class="q">Où se trouve le point de McBurney ?</p>
+    <p>On trace une ligne imaginaire entre le nombril (ombilic) et la crête iliaque antéro-supérieure, puis on divise cette ligne en 3 tiers : tiers externe, tiers moyen, tiers interne.</p>
+    <p><b>N.B. :</b> le point d'union entre le tiers externe et les deux tiers internes (autrement dit, l'union entre le tiers externe et le tiers moyen) constitue le « point de McBurney ».</p>
+  </div>
+  <div class="card piege">
+    <p>Il ne faut jamais dire « signe de McBurney » ni « McBurney positif ou négatif » : cela n'existe pas. Le fait que ce n'est pas une manœuvre fait que ce ne peut pas être un signe !!!</p>
+    <p>À la palpation de la FID : douleur provoquée au point de McBurney.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>Signe</th><th>Technique (cahier)</th><th>Mécanisme (cahier)</th></tr>
+    <tr><td><b>Signe de Blumberg</b></td><td>Décompression brusque de la FID lors de l'appendicite aiguë.</td><td>Augmentation de la douleur, due à la décompression brusque de la paroi ; c'est la distension des parois qui entraîne la douleur lors de l'appendicite.</td></tr>
+    <tr><td><b>Signe de Rovsing</b></td><td>On appuie sur la FIG (fosse iliaque gauche) ; on cherche à provoquer la douleur en FID.</td><td>Recherche personnelle du cahier : 1) on déplace le gaz et le contenu colique vers le cæcum (à droite) ; 2) cela augmente la pression intra-luminale du côlon droit ; 3) distension du cæcum et de l'appendice enflammé ; 4) irritation du péritoine pariétal ; 5) la douleur se ressent en FID malgré la pression exercée à gauche.</td></tr>
+    <tr><td><b>Triade de Dieulafoy</b></td><td>Hyperesthésie + contracture + douleur au point de McBurney.</td><td>Les 3 constituent ce qu'on appelle « la triade de Dieulafoy » dans le cas d'une appendicite aiguë.</td></tr>
+  </table></div>
+  <div class="card note">
+    <p><b>Appendice en rétro-cæcal.</b> Dans certains cas, l'appendice peut se situer en position rétro-cæcale (derrière le cæcum) : il ne donne pas forcément une douleur franche en FID, mais plutôt une douleur de la région lombaire pouvant ressembler à des symptômes urinaires.</p>
+    <p><b>Signe de Metzger-Lapinsky (lecture).</b> Patient en décubitus dorsal, palpation de la FID ; on demande au patient de soutenir son membre inférieur droit (de le lever, étendu) : le muscle psoas va prendre l'appendice en sandwich entre la main qui palpe et le muscle psoas en arrière.</p>
+    <p><b>Recherche sur le psoas (cahier) :</b> le muscle psoas est un muscle profond qui relie la colonne lombaire au fémur. Il est cliniquement important en cas d'appendicite, de douleurs abdominales, etc.</p>
+    <p><b>Signe de l'obturateur.</b> On demande au patient en décubitus dorsal de faire une flexion de la cuisse sur le tronc, une flexion de la jambe sur la cuisse et une rotation externe.</p>
+  </div>
+  <div class="card inc"><p>Nom du signe lu « Metzger Lapinsky » (je ne suis pas sûr de l'orthographe ni de l'attribution) ; les étapes de la manœuvre sont lues à partir d'une page mal éclairée. Même remarque pour « membre inférieur » (droit) qu'on demande de soutenir, étendu.</p></div>
+  <div class="card ecart">
+    <p>Pour le <b>signe de l'obturateur</b>, le cahier note « rotation externe ». Le <i>Bates' Guide to Physical Examination and History Taking</i> décrit une rotation <b>interne</b> de la hanche fléchie. Je ne corrige pas la note : le mot est peut-être mal lu par moi (« externe » ou « interne »). À vérifier avec ton enseignant. [À VÉRIFIER]</p>
+  </div>
+
+  <h4>Toucher rectal</h4>
+  <div class="card note">
+    <p>Puisqu'il y a appendicite, on peut faire un <b>toucher rectal</b> (examen digital rectal). Le Douglas bombé avec douleur, on appelle ça le <b>« cri du Douglas »</b>.</p>
+  </div>
+  <div class="card inc"><p>Le cahier s'arrête ici : la percussion et l'auscultation détaillées de l'appendicite ne figurent pas dans les pages fournies.</p></div>
+  <div class="card retenir">
+    <ul>
+      <li>Examen : inspection, palpation, percussion, auscultation (ordre du cahier, voir écart).</li>
+      <li>Inspection : abdomen qui ne suit pas la respiration à la FID ; déviation de l'ombilic à droite (signe à confirmer).</li>
+      <li>McBurney = point douloureux, pas un signe. Blumberg = douleur à la décompression de la FID. Rovsing = douleur en FID en appuyant à gauche. Triade de Dieulafoy = hyperesthésie + contracture + douleur de McBurney.</li>
+      <li>Appendice rétro-cæcal : douleur lombaire pseudo-urinaire. Psoas et obturateur : manœuvres de la FID. Douglas bombé douloureux = cri du Douglas.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= SYNTHÈSE ======================= -->
+<section class="cours rev" id="synthese">
+  <h2><small>Une page</small>Synthèse des cinq cours</h2>
+  <div class="scroll"><table>
+    <tr><th>Cours</th><th>À savoir par cœur</th></tr>
+    <tr><td><b>1</b></td><td>Symptôme = ressenti du patient ; signe = observation du médecin. Motif de consultation, fiche d'identification, HMA chronologique, puis antécédents personnels → familiaux → chirurgicaux → allergies → habitudes toxiques.</td></tr>
+    <tr><td><b>2</b></td><td>Syndrome = ensemble de signes et de symptômes. 11 caractéristiques de la douleur. 9 régions de l'abdomen, repères, point de McBurney.</td></tr>
+    <tr><td><b>3</b></td><td>Cinq issues d'une consultation pour douleur ; douleur chirurgicale : pas de médicament avant le chirurgien. Abdomen aigu chirurgical = douleur brutale + urgence ; 4 syndromes (péritonéal, occlusif, hémorragique, mixte).</td></tr>
+    <tr><td><b>4</b></td><td>Syndrome péritonéal : contracture + rebond (signes péritonéaux). Signes fonctionnels, généraux, physiques. 3<sup>e</sup> secteur → ↓ volémie → oligurie. Péritonites primaire, secondaire (la plus fréquente), tertiaire.</td></tr>
+    <tr><td><b>5</b></td><td>Appendicite : obstruction → stase → germes → gaz → distension. Douleur épigastrique puis FID après ≥ 6 h. Accalmie traîtresse de Dieulafoy. Signes : McBurney (point), Blumberg, Rovsing, triade de Dieulafoy, psoas, obturateur, cri du Douglas.</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= INCERTAINS ======================= -->
+<section class="cours rev" id="incertains">
+  <h2><small>À trancher avec toi</small>Lectures incertaines et écarts regroupés</h2>
+  <div class="card inc">
+    <ol>
+      <li><b>Cours 1</b> : phrase « le médecin peut s'orienter à partir des données… » ; les deux questions-réponses signe/symptôme (dont « 15:08:56 ») ; la liste des caractéristiques de la masse (réductibilité) ; « HC » ; l'exemple du gâteau ; les maladies liées au sexe ; l'exemple du sexe biologique ; l'exemple de l'âge ; la remarque sur « Paciente » ; « cyclémique » ; le paragraphe du furoncle ; l'appendicectomie préalable ; les phrases créoles du tabac/alcool.</li>
+      <li><b>Cours 2</b> : numérotation du facteur calmant ; année de la date.</li>
+      <li><b>Cours 3</b> : « 95 % » ; « 6 h » ; exéat ; « conjonctive en … de poisson » ; « signes lib… ».</li>
+      <li><b>Cours 4</b> : « maître symptôme » ; « en contractant sur la paroi ».</li>
+      <li><b>Cours 5</b> : « organe très long » / « petit » ; la phrase sur le plexus solaire ; points 1, 2, 3 de l'interrogatoire ; la liste de l'état général altéré ; « masse visible » ; nom du signe d'ombilic (Chutro ?) ; « Metzger Lapinsky » ; mot « externe/interne ».</li>
+    </ol>
+  </div>
+  <div class="card ecart">
+    <ol>
+      <li>Année du cours 2 (2026 notée ; 2025 plausible).</li>
+      <li>« Dysurie = douleur » et « anodynie = douleur de l'anus ».</li>
+      <li>Définition de l'appendicite aiguë recopiée de celle de l'abdomen aigu chirurgical.</li>
+      <li>Contracture appelée « maître symptôme ».</li>
+      <li>Ordre de l'examen de l'abdomen (Inspection – Palpation – Percussion – Auscultation) face à Bates.</li>
+      <li>Signe de l'obturateur : « rotation externe » face à Bates (rotation interne).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================= GLOSSAIRE ======================= -->
+<section class="cours rev" id="glossaire">
+  <h2><small>Référence rapide</small>Glossaire</h2>
+  <div class="scroll"><table>
+    <tr><th>Terme</th><th>Sens (d'après les notes)</th></tr>
+    <tr><td>Abdomen aigu chirurgical</td><td>Ensemble de pathologies abdominales avec douleur brusque nécessitant une intervention chirurgicale urgente.</td></tr>
+    <tr><td>Accalmie traîtresse de Dieulafoy</td><td>Diminution trompeuse de la douleur appendiculaire alors que la maladie s'aggrave (perforation).</td></tr>
+    <tr><td>Anamnèse</td><td>Interrogatoire ; histoire de la maladie actuelle.</td></tr>
+    <tr><td>Cri du Douglas</td><td>Douglas bombé et douloureux au toucher rectal.</td></tr>
+    <tr><td>Contracture</td><td>Contraction défensive des muscles de la paroi abdominale qui diminue la douleur.</td></tr>
+    <tr><td>Fécalite / fécalome</td><td>Petite / grosse selle dure comme une pierre.</td></tr>
+    <tr><td>Fébricule</td><td>Petite fièvre, ne dépassant pas 38,5° (notes).</td></tr>
+    <tr><td>Iléus réflexe</td><td>Arrêt du péristaltisme des anses dans le syndrome péritonéal.</td></tr>
+    <tr><td>Motif de consultation</td><td>Ce qui pousse le patient à consulter.</td></tr>
+    <tr><td>Oligurie</td><td>Diminution de la production d'urine (liée à la baisse de la volémie).</td></tr>
+    <tr><td>Péritonite</td><td>Inflammation du feuillet péritonéal (primaire, secondaire, tertiaire).</td></tr>
+    <tr><td>Position antalgique</td><td>Position qui soulage la douleur (couchée ; en « chien de fusil » dans l'appendicite).</td></tr>
+    <tr><td>Rebond (réaction péritonéale)</td><td>Douleur provoquée par la décompression brusque de la paroi abdominale.</td></tr>
+    <tr><td>Signe</td><td>Objectif, observable, mesurable, découvert par le médecin.</td></tr>
+    <tr><td>Symptôme</td><td>Subjectif, ressenti par le patient, non mesurable.</td></tr>
+    <tr><td>Syndrome</td><td>Ensemble de signes et de symptômes.</td></tr>
+    <tr><td>Troisième secteur</td><td>Eau accumulée hors des secteurs intracellulaire et extracellulaire (ascite, hémothorax, hémopéritoine…).</td></tr>
+  </table></div>
+</section>
+
+</main>
+</div>
+
+<footer>Sémiologie chirurgicale — Cours 1 à 5 du Dr Lubin Evens, d'après les cahiers manuscrits. Sans QCM, flashcards ni cas cliniques.</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function prog(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+  }
+  window.addEventListener('scroll',prog,{passive:true});prog();
+
+  var btn=document.getElementById('tocBtn'),toc=document.getElementById('toc');
+  btn.addEventListener('click',function(){
+    var o=toc.classList.toggle('ouvert');
+    btn.setAttribute('aria-expanded',o);
+  });
+  toc.querySelectorAll('.links a').forEach(function(a){
+    a.addEventListener('click',function(){toc.classList.remove('ouvert');btn.setAttribute('aria-expanded','false');});
+  });
+
+  var links=[].slice.call(toc.querySelectorAll('.links a'));
+  var targets=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onTo(){
+    var y=window.scrollY+110,cur=0;
+    targets.forEach(function(t,i){if(t&&t.offsetTop<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  window.addEventListener('scroll',onTo,{passive:true});onTo();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var secs=document.querySelectorAll('.rev');
+  if(reduce||!('IntersectionObserver' in window)){secs.forEach(function(s){s.classList.add('vu');});}
+  else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vu');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -5% 0px'});
+    secs.forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>
